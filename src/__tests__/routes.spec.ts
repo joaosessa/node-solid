@@ -72,11 +72,15 @@ describe("[GET] /users/:user_id", () => {
 
     const response = await request(app).get(`/users/${user.id}`);
 
+    console.log('dates: ', response.body.created_at, ' ', response.body.updated_at);
+
     const parsedResponse = {
       ...response.body,
       created_at: new Date(response.body.created_at),
       updated_at: new Date(response.body.updated_at),
     };
+
+    console.log('parsed response: ', parsedResponse);
 
     expect(parsedResponse).toMatchObject({
       ...user,
